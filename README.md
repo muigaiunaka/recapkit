@@ -4,6 +4,10 @@ Spoiler-safe recaps &amp; character Q&amp;A from captions and media transformed 
 
 # System Design
 
+#### Open Questions
+- Should the system be stateless or stateful
+- Should the system recap results be idempotent (e.g. if a two different users have the same last progress, do they get the same recap? Trade-offs: If yes, Pro: less memory intensive. Con: Closes door to recap personalization for "tone/voice" or other user preference settings. If no, 
+
 #### Functional Requirements
 1. Users should be able to get a spoiler-free recaps strictly from segments at or before the user's last progress
 2. As a viewer, I can request a recap that only includes events up to where I stopped (episode time / audiobook time / manga page), so nothing ahead is spoiled
@@ -20,8 +24,29 @@ Spoiler-safe recaps &amp; character Q&amp;A from captions and media transformed 
 6. User can create a shareable link to a recap the spoiler boundary
 
 #### Non-Functional Requirements
+1. The system should generate recap text in under 30 seconds
+2. The system should
+3. The system should scale to support
+4. ...
+5. The system should ingest Media Assets and the Media Assets should be ingestable in under 30 minutes after release of the latest chapter/episode/
+6. The system is read heavy, and thus needs to be able to support high read throughput. The system should handle spikes around events like new seasons, new releases, etc. expect 100:1 read:writes and 1000:1 for spikes. 
+7. The system should only accept public domain or user-provided content. DMCA takedown should occur within 3 days of receiving the request.
+
+--- Cutline
+1. The system should generate recap videos in under two minutes
 
 #### Core Entities
+User
+Recap
+Title
+Media Assets
+
+| Entity      | Recap | Title      | Description |
+| ----------- | ----------- | ----------- | ----------- |
+| Header      | Title       | Header      | Title       |
+| Paragraph   | Text        | Paragraph   | Text        |
+
+
 
 #### High Level Design
 
